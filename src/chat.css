@@ -1,0 +1,90 @@
+/* styles.css */
+/* styles.css */
+/* styles.css */
+/* styles.css */
+/* styles.css */
+
+.app-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.video-container {
+  display: flex;
+  padding-right: 90px;
+}
+
+.video-left {
+  display: flex;
+  flex-direction: column;
+  padding-right: 130px;
+}
+
+.video-self,
+.video-remote {
+  width: 100%; /* Set width to 100% to fill the container */
+  height: 75%; /* Set height to 100% to fill the container */
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+  object-fit: cover; /* Ensure video fills the container */
+
+}
+
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px; /* Adjust margin as needed */
+}
+
+.chat-box {
+  border: 1px solid #ccc;
+  height: 700px; /* Adjust height as needed */
+  width: 600px; /* Adjust width as needed */
+  padding: 10px;
+  overflow-y: scroll;
+}
+
+.input-box {
+  margin-top: 10px; /* Adjust margin as needed */
+}
+
+.input-box input {
+  width: calc(100% - 70px);
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px 0 0 5px;
+}
+
+.input-box button {
+  width: 70px;
+  padding: 5px 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+}
+
+.input-box button:hover {
+  background-color: #0056b3;
+}
+
+.end-chat-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: red;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 60px
+ 
+}
+
+.end-chat-btn:hover {
+  background-color: darkred;
+}

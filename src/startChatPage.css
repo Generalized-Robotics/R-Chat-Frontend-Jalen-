@@ -1,0 +1,65 @@
+/* StartChatPage.css */
+
+.start-chat-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+  
+  .start-chat-button {
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 300px;
+  }
+  .start-chat-button:hover {
+    background-color: #509ced; /* Darker shade of red on hover */
+  }
+  .start-chat-button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  .settings {
+    margin-top: 20px; /* Adjust margin as needed */
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    background-color: #535151; /* Red color */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 300px;
+
+  }
+  
+  .settings:hover {
+    background-color: #696364; /* Darker shade of red on hover */
+  }
+  
+  .logout-button {
+    margin-top: 20px; /* Adjust margin as needed */
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    background-color: #dc3545; /* Red color */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 300px;
+
+  }
+  
+  .logout-button:hover {
+    background-color: #b8656d; /* Darker shade of red on hover */
+  }
+  
