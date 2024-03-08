@@ -1,5 +1,5 @@
 // auth.js
-import { auth,signInWithEmailAndPassword} from './firebaseConfig';
+import { auth,signInWithEmailAndPassword } from './firebaseConfig';
 
 function login(email, password) {
     return new Promise((resolve, reject) => {
@@ -29,5 +29,7 @@ function logout() {
       console.error('Error signing out:', error);
     });
 }
+
+
 
 export { login, logout };

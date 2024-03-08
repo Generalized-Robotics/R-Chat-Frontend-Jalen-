@@ -1,14 +1,25 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,useRef } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { logout } from './auth'; // Import the logout function from auth.js
 import './startChatPage.css'; // Import CSS file for styling
+import Peer from 'peerjs';
+
+
+
+
 
 const StartChatPage = () => {
   const [socket, setSocket] = useState(null);
   const [chatStarted, setChatStarted] = useState(false);
   const [redirect, setRedirect] = useState(false); // State to control redirection
   const navigate = useNavigate(); // Get the navigate function from react-router-dom
+  const [peerId, setPeerId] = useState('');
+  const [remotePeerIdValue, setRemotePeerIdValue] = useState('');
+  const remoteVideoRef = useRef(null);
+  const currentUserVideoRef = useRef(null);
+  const peerInstance = useRef(null);
+
 
   useEffect(() => {
     // Establish WebSocket connection
@@ -27,6 +38,7 @@ const StartChatPage = () => {
       console.log("event data ", eventData.type);
       if (eventData.type === 'okDONE') {
         console.log('Match found:', eventData.data.partnerId);
+      
         setRedirect(true); // Set redirect state to true
       }
     };
@@ -102,6 +114,9 @@ const StartChatPage = () => {
   };
   return (
     <div className="start-chat-page">
+
+
+        
       <h1>Start Chatting</h1>
       <button onClick={handleStartChat} disabled={!socket || chatStarted} className="start-chat-button">
         Start Chatting

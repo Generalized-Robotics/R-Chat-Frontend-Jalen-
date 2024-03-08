@@ -9,6 +9,10 @@ import LoginAsGuest from './startChat';
 import StartChat from './startChat';
 import ChatBox from './ChatBox';
 import Settings from './Settings'
+import PeerComponent from './PeerComponent';
+import DataConnectionComponent from './DataConnectionComponent';
+import MediaConnectionComponent from './MediaConnectionComponent';
+
 
 const App = () => {
   return (
