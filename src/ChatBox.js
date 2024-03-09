@@ -215,6 +215,10 @@ const ChatBox = () => {
         .then((chatId) => {
           //console.log('Received chat ID:', chatId);
           // Do something with the chat ID
+          if(chatId===null){
+            navigate('/login-as-guest')
+            window.location.reload();
+          }
         })
         .catch((error) => {
           console.error('Error:', error);
@@ -542,7 +546,30 @@ useEffect(() => {
             
           const currentUser = sessionStorage.getItem('username');
           socket.send(JSON.stringify({ action: 'endChat', username: currentUser }));
+
+           // Stop the user's video stream
+      const userMediaStream = currentUserVideoRef.current.srcObject;
+      if (userMediaStream) {
+        const tracks = userMediaStream.getTracks();
+        tracks.forEach(track => track.stop());
+      }
+
+      // Disconnect from the PeerJS network
+      if (peerInstance.current) {
+       
+       
+        //turn off camera
+        peerInstance.current.destroy();
+       
+      }
+
+
+
+
+
          navigate('/login-as-guest');
+         peerInstance.current.destroy();
+         window.location.reload();
 
         } else {
           console.error('WebSocket connection is null');

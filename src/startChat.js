@@ -10,6 +10,7 @@ import Peer from 'peerjs';
 
 
 const StartChatPage = () => {
+
   const [socket, setSocket] = useState(null);
   const [chatStarted, setChatStarted] = useState(false);
   const [redirect, setRedirect] = useState(false); // State to control redirection
@@ -22,6 +23,7 @@ const StartChatPage = () => {
 
 
   useEffect(() => {
+  
     // Establish WebSocket connection
     const newSocket = new WebSocket('ws://localhost:8010');
     newSocket.onopen = () => {
