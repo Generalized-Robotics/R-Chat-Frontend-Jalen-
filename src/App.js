@@ -7,7 +7,7 @@ import Login from './Login';
 import Signup from './Signup';
 import LoginAsGuest from './startChat';
 import StartChat from './startChat';
-import ChatBox from './ChatBox';
+import ChatBox from './Rchat';
 import Settings from './Settings'
 import PeerComponent from './PeerComponent';
 import DataConnectionComponent from './DataConnectionComponent';

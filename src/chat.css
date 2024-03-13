@@ -28,12 +28,18 @@
 .video-self,
 .video-remote {
   width: 100%; /* Set width to 100% to fill the container */
-  height: 75%; /* Set height to 100% to fill the container */
+  height: 400px; /* Adjust height as needed */
   border: 1px solid #ccc;
   margin-bottom: 10px;
   object-fit: cover; /* Ensure video fills the container */
-
 }
+
+.video-self video,
+.video-remote video {
+  width: 100%; /* Set video width to fill the container */
+  height: 100%; /* Set video height to fill the container */
+}
+
 
 .chat-container {
   display: flex;
