@@ -25,7 +25,9 @@ const StartChatPage = () => {
   useEffect(() => {
   
     // Establish WebSocket connection
+   // const newSocket = new WebSocket('ws://129b-2601-c9-4000-a2e0-288a-6810-31aa-6adb.ngrok-free.app:8010');
     const newSocket = new WebSocket('ws://localhost:8010');
+    //const newSocket = new WebSocket('wss://' + window.location.host);
     newSocket.onopen = () => {
       console.log('WebSocket connection established');
       setSocket(newSocket);

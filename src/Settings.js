@@ -7,7 +7,7 @@ const Settings = () => {
 
     const handleSaveOrientation = async () => {
         try {
-            const response = await axios.get(`http://localhost:8090/setOrientation?orientation=${orientation}&username=${sessionStorage.getItem('username')}`);
+            const response = await axios.get(`/setOrientation?orientation=${orientation}&username=${sessionStorage.getItem('username')}`);
             console.log(response.data);
             // Add any additional logic for handling the response
         } catch (error) {
@@ -17,7 +17,7 @@ const Settings = () => {
 
     const handleResetPassword = async () => {
         try {
-            const response = await axios.get(`http://localhost:8090/resetPassword?email=${email}&username=${sessionStorage.getItem('username')}`);
+            const response = await axios.get(`/resetPassword?email=${email}&username=${sessionStorage.getItem('username')}`);
             console.log(response.data);
             // Add any additional logic for handling the response
         } catch (error) {

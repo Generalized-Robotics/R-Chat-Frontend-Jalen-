@@ -10,7 +10,7 @@ const LandingPage = () => {
 
   const handleLoginAsGuest = async () => {
     try {
-      await  axios.get('http://localhost:8090/guest')
+      await  axios.get('/guest')
       .then((response) => {
         console.log(".then never runs")
         const username = response.data.username; // Accessing the username from the response data

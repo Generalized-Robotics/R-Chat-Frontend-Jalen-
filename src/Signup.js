@@ -3,6 +3,10 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import './Signup.css';
 
+
+
+
+
 const SignUpForm = () => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -11,12 +15,37 @@ const SignUpForm = () => {
   const [password, setPassword] = useState('');
   const [phone, setPhone] = useState('');
   const [gender, setGender] = useState('');
+
+
+  
+
+ 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await axios.get('http://localhost:8090/api/signUp', {
+     // await axios.get('/payment')
+      console.log("called payment")
+      // Call the payment route to initiate Stripe payment
+      const paymentResponse = await axios.get('/payment', {
         params: {
+          firstName: firstName,
+          lastName: lastName,
+          username: username,
+          email: email,
+          password: password,
+          phone: phone,
+          gender: gender,
+        }
+      });
+
+  
+            window.location.href = paymentResponse.data.checkoutUrl;
+
+/*
+      if (paymentResponse.data.success) {
+        // Payment successful, proceed with sign-up logic
+        const signUpResponse = await axios.post('http://localhost:8090/api/signUp', {
           inputFirstName: firstName,
           inputLastName: lastName,
           inputUsername: username,
@@ -24,17 +53,19 @@ const SignUpForm = () => {
           inputPassword: password,
           phone: phone,
           inputGender: gender,
-        }
-      });
+        });
 
-      console.log(response.data);
-      // Handle successful sign-up
+        console.log(signUpResponse.data);
+        // Handle successful sign-up
+      } else {
+        console.error('Payment failed:', paymentResponse.data.error);
+        // Handle payment failure
+      }*/
     } catch (error) {
       console.error('Error signing up:', error);
       // Handle error
     }
   };
-
   return (
     <div className="container">
       <form className="form-container" onSubmit={handleSubmit}>

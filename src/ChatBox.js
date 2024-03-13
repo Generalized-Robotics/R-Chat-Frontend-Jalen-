@@ -96,8 +96,10 @@ const ChatBox = () => {
         });
         console.log("list " , myList)
         peer.on('call', (call) => {
-          var getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
-    
+         // var getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+         navigator.getUserMedia= navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+         var getUserMedia= navigator.getUserMedia
+        
           getUserMedia({ video: true, audio: true }, (mediaStream) => {
             currentUserVideoRef.current.srcObject = mediaStream;
             currentUserVideoRef.current.play();
@@ -117,8 +119,9 @@ const ChatBox = () => {
     
       const call = (remotePeerId) => {
         console.log("calling user " , remotePeerId )
-        var getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
-    
+        //var getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+       navigator.getUserMedia= navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+       var getUserMedia= navigator.getUserMedia
         getUserMedia({ video: true, audio: true }, (mediaStream) => {
     
           currentUserVideoRef.current.srcObject = mediaStream;
@@ -132,6 +135,7 @@ const ChatBox = () => {
           });
         });
       }
+    
     
     
     
@@ -324,7 +328,7 @@ useEffect(() => {
             // Call checkSession() after the component has mounted
             checkSession();
         }, [socket, oppositeIdFound]); // Run only when socket or oppositeIdFound changes
-        
+        getoppo
      
         
         */
@@ -604,7 +608,7 @@ useEffect(() => {
           <div className="video-remote">
             {/* Display the remote user's video feed */}
             {/*remoteStream && <video ref={remoteVideoRef} autoPlay={true} />*/}
-            <video ref={remoteVideoRef} />
+            <video ref={remoteVideoRef} autoPlay={true} playsInline={true} muted={true}/>
 
            
 
