@@ -38,7 +38,7 @@ const LandingPage = () => {
 
   return (
     <div className="landing-page">
-      <h1>Welcome</h1>
+    <h1 style={{ color: '#9e7ed4' }}>Welcome to R-Chat!</h1>
       <div className="buttons">
         <Link to="/login" className="button">Login</Link>
         <Link to="/signup" className="button">Signup</Link>

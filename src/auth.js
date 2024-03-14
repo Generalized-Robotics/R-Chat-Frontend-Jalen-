@@ -1,5 +1,5 @@
 // auth.js
-import { auth,signInWithEmailAndPassword } from './firebaseConfig';
+import { auth,signInWithEmailAndPassword,sendPasswordResetEmail  } from './firebaseConfig';
 
 function login(email, password) {
     return new Promise((resolve, reject) => {
@@ -31,5 +31,18 @@ function logout() {
 }
 
 
+function reset(email) {
+  return new Promise((resolve, reject) => {
+    sendPasswordResetEmail(auth, email)
+      .then(() => {
+        console.log('Password reset email sent successfully!');
+        resolve();
+      })
+      .catch((error) => {
+        console.error('Error sending password reset email:', error);
+        reject(error.message);
+      });
+  });
+}
 
-export { login, logout };
+export { login, logout, reset };

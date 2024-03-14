@@ -37,7 +37,8 @@ const LoginForm = () => {
                 navigate('/login-as-guest');
               })
               .catch((error) => {
-                console.error("Error fetching username:", error);
+                alert("Error fetching username:", error);
+                
               });
             } else {
               // Handle unsuccessful login
@@ -47,7 +48,7 @@ const LoginForm = () => {
           .catch((error) => {
             // Handle login error
             // setError(error);
-            console.error("Error logging in:", error);
+           alert("Error logging in: incorrect username or password", error);
           });
       };
     return (

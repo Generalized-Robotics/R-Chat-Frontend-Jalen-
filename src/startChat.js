@@ -17,6 +17,8 @@ const StartChatPage = () => {
   const navigate = useNavigate(); // Get the navigate function from react-router-dom
   const [peerId, setPeerId] = useState('');
   const [remotePeerIdValue, setRemotePeerIdValue] = useState('');
+  const [isLoading, setIsLoading] = useState(false); // State to control loading indicator
+
   const remoteVideoRef = useRef(null);
   const currentUserVideoRef = useRef(null);
   const peerInstance = useRef(null);
@@ -78,8 +80,11 @@ const StartChatPage = () => {
   }, [redirect, navigate]);
 
   const handleStartChat = async () => {
+    
     try {
       if (!chatStarted) {
+        setIsLoading(true); // Show loading indicator
+
         // Call initializeChat function only if chat has not started yet
         console.log("initializing it")
         // await  initializeChat();
@@ -131,6 +136,12 @@ const StartChatPage = () => {
       <button onClick={handleLogout} className="logout-button">
         Logout
       </button>
+      {isLoading && (
+        <div className="loading-container">
+          <div className="loading"></div>
+          <p>Finding Chat...</p>
+        </div>
+      )}
     </div>
   );
 };

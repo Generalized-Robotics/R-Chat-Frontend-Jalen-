@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './setting.css'
+import { reset } from './auth';
+
 const Settings = () => {
     const [orientation, setOrientation] = useState('');
     const [email, setEmail] = useState('');
@@ -17,9 +19,11 @@ const Settings = () => {
 
     const handleResetPassword = async () => {
         try {
-            const response = await axios.get(`/resetPassword?email=${email}&username=${sessionStorage.getItem('username')}`);
-            console.log(response.data);
+          ///  const response = await axios.get(`/resetPassword?email=${email}&username=${sessionStorage.getItem('username')}`);
+           // console.log(response.data);
+           reset(email)
             // Add any additional logic for handling the response
+           alert("reset email sent to " + email)
         } catch (error) {
             console.error('Error resetting password:', error);
         }
