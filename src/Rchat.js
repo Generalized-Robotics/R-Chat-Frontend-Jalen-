@@ -143,7 +143,7 @@ const Rchat = () => {
     useEffect(() => {
         // Establish WebSocket connection
         
-        const newSocket = new WebSocket('ws://localhost:8010');
+        const newSocket = new WebSocket('wss://10.0.0.239:443');
         newSocket.onopen = () => {
           console.log('WebSocket connection established');
           
@@ -219,8 +219,8 @@ const Rchat = () => {
           //console.log('Received chat ID:', chatId);
           // Do something with the chat ID
           if(chatId===null){
-            navigate('/login-as-guest')
-            window.location.reload();
+           navigate('/login-as-guest')
+           window.location.reload();
           }
         })
         .catch((error) => {
@@ -602,12 +602,13 @@ useEffect(() => {
       <div className="video-container">
         <div className="video-left">
           <div className="video-self">
-            <video ref={currentUserVideoRef}  />
+          <video ref={currentUserVideoRef} playsInline={true} muted={true} style={{ objectFit: 'cover' }} />
+
           </div>
           <div className="video-remote">
             {/* Display the remote user's video feed */}
             {/*remoteStream && <video ref={remoteVideoRef} autoPlay={true} />*/}
-            <video ref={remoteVideoRef} autoPlay={true} playsInline={true} muted={true}/>
+            <video ref={remoteVideoRef} autoPlay={true} playsInline={true} muted={false} style={{ objectFit: 'cover' }}/>
 
            
 

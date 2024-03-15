@@ -97,3 +97,101 @@
 .end-chat-btn:hover {
   background-color: darkred;
 }
+
+@media only screen and (max-width: 768px) {
+  /* Adjust max-width as needed */
+  .app-container {
+    display: flex;
+    flex-direction: column; /* Change direction to stack items vertically */
+    justify-content: flex-start;
+   align-content: center;
+    height: 100vh;
+    padding: 20px; /* Add padding */
+  
+  }
+
+  .video-container {
+    display: flex;
+    flex-direction: column;
+   
+    padding-bottom: 20px; /* Add some space at the bottom */
+  padding-top: 20px;
+ 
+  }
+
+  .video-self,
+  .video-remote {
+    height: 180px; /* Adjust height */
+    width: 300px; /* Adjust width */
+    margin-bottom: 10px; /* Add some space between videos */
+  
+   
+    padding-left: 20px;
+    border:none
+  }
+
+  .video-self video,
+  .video-remote video {
+    width: 100%; /* Make the video fill its container */
+    height: 100%; /* Make the video fill its container */
+
+   
+  }
+
+  .chat-container {
+    width: 65%; /* Take full width */
+    padding: 10px; /* Add padding */
+   padding-left: 0px;
+   padding-right: 170px;
+  }
+
+  .chat-box {
+    border: 1px solid #ccc;
+    height: 100px; /* Adjust height */
+    width: 100%; /* Take full width */
+    padding: 10px; /* Add padding */
+    overflow-y: scroll;
+    margin-bottom: 10px; /* Add some space at the bottom */
+    border-radius: 10px; /* Adjust border radius */
+    
+  }
+
+  .input-box {
+    width: 100%; /* Take full width */
+    display: flex;
+    align-items: center; /* Align items vertically */
+    padding-left: 20px;
+  }
+
+  .input-box input {
+    flex: 1; /* Take remaining space */
+    padding: 5px; /* Add padding */
+    border: 1px solid #ccc;
+    border-radius: 5px; /* Adjust border radius */
+    margin-right: 10px; /* Add some space between input and button */
+    padding-left: 20px;
+  }
+
+  .input-box button {
+    width: 80px; /* Adjust button width */
+    padding: 5px; /* Add padding */
+    background-color: #7a6dce;
+    color: #fff;
+    border: none;
+    border-radius: 5px; /* Adjust border radius */
+    cursor: pointer;
+  }
+
+  .end-chat-btn {
+    position: absolute;
+    bottom: 10px; /* Adjust bottom position */
+    right: 10px; /* Adjust right position */
+    padding: 5px 10px; /* Add padding */
+    width: 50px; /* Adjust button width */
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+}
