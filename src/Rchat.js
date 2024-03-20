@@ -143,7 +143,7 @@ const Rchat = () => {
     useEffect(() => {
         // Establish WebSocket connection
         
-        const newSocket = new WebSocket('wss://10.0.0.239:443');
+        const newSocket = new WebSocket('wss://10.78.140.215:443');
         newSocket.onopen = () => {
           console.log('WebSocket connection established');
           

@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useNavigate  } from 'react-router-dom';
+import {Adsense} from '@ctrl/react-adsense';
+
+
 
 import axios from 'axios';
 import './landing-page.css'; // Import the CSS file
@@ -8,9 +11,10 @@ import './landing-page.css'; // Import the CSS file
 const LandingPage = () => {
     const navigate  = useNavigate(); // Get the history object
 
+  
   const handleLoginAsGuest = async () => {
     try {
-      await  axios.get('https://10.0.0.239:443/guest')
+      await  axios.get('https://10.78.140.215:443/guest')
       .then((response) => {
         console.log(".then never runs")
         const username = response.data.username; // Accessing the username from the response data
@@ -44,6 +48,15 @@ const LandingPage = () => {
         <Link to="/signup" className="button">Signup</Link>
         <button onClick={handleLoginAsGuest} className="button">Login as Guest</button>
       </div>
+
+
+
+<Adsense
+  client="ca-pub-9957335249326959"
+  slot="2067281555"
+  style={{ width: 728, height: 90 }}
+  format=""
+/>
     </div>
   );
 };

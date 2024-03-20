@@ -4,6 +4,9 @@ import { useNavigate } from 'react-router-dom';
 import { logout } from './auth'; // Import the logout function from auth.js
 import './startChatPage.css'; // Import CSS file for styling
 import Peer from 'peerjs';
+import { Helmet } from 'react-helmet-async';
+
+
 
 
 
@@ -23,12 +26,39 @@ const StartChatPage = () => {
   const currentUserVideoRef = useRef(null);
   const peerInstance = useRef(null);
 
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js';
+    script.crossOrigin = 'anonymous';
+    script.async = true;
+    document.head.appendChild(script);
+
+    return () => {
+      // Clean up the script tag when component unmounts
+      document.head.removeChild(script);
+    };
+  }, []);
+
+  useEffect(() => {
+    console.log("webhook called")
+    if (typeof window.adsbygoogle !== 'undefined') {
+      console.log("showing ad")
+     window.adsbygoogle.push({});
+
+   
+    }else{
+      console.log(" ad not loaded")
+    }
+  }, []);
+
+
+
 
   useEffect(() => {
   
     // Establish WebSocket connection
    // const newSocket = new WebSocket('ws://129b-2601-c9-4000-a2e0-288a-6810-31aa-6adb.ngrok-free.app:8010');
-    const newSocket = new WebSocket('wss://10.0.0.239:443');
+    const newSocket = new WebSocket('wss://10.78.140.215:443');
     //const newSocket = new WebSocket('wss://' + window.location.host);
     newSocket.onopen = () => {
       console.log('WebSocket connection established');
@@ -130,6 +160,7 @@ const StartChatPage = () => {
       <button onClick={handleStartChat} disabled={!socket || chatStarted} className="start-chat-button">
         Start Chatting
       </button>
+      
       <button onClick={handleSettings} className="settings">
         Settings
       </button>
@@ -142,6 +173,19 @@ const StartChatPage = () => {
           <p>Finding Chat...</p>
         </div>
       )}
+
+
+
+
+      {/* Your other React components */}
+    
+      <ins className="adsbygoogle"
+           style={{ display: 'inline-block', width: '728px', height: '90px' }}
+           data-ad-client="ca-pub-9957335249326959"
+           data-ad-slot="2067281555"
+          ></ins>
+
+
     </div>
   );
 };

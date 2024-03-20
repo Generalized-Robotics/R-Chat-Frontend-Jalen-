@@ -27,7 +27,7 @@ const SignUpForm = () => {
      // await axios.get('/payment')
       console.log("called payment")
       // Call the payment route to initiate Stripe payment
-      const paymentResponse = await axios.get('http://10.0.0.239:8090/payment', {
+      const paymentResponse = await axios.get('https://10.78.140.215:443/payment', {
         params: {
           firstName: firstName,
           lastName: lastName,
