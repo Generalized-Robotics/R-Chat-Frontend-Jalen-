@@ -1,5 +1,5 @@
 // auth.js
-import { auth,signInWithEmailAndPassword,sendPasswordResetEmail  } from './firebaseConfig';
+import { auth,signInWithEmailAndPassword,sendPasswordResetEmail ,getUserByEmail  } from './firebaseConfig';
 
 function login(email, password) {
     return new Promise((resolve, reject) => {
@@ -17,6 +17,10 @@ function login(email, password) {
         });
     });
   }
+
+function getUid(){
+return auth.currentUser.uid
+}
 
 function logout() {
   auth.signOut()
@@ -45,4 +49,8 @@ function reset(email) {
   });
 }
 
-export { login, logout, reset };
+
+// Function to disable user account
+
+
+export { login, logout, reset, getUid };

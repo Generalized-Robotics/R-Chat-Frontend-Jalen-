@@ -51,12 +51,7 @@ const LandingPage = () => {
 
 
 
-<Adsense
-  client="ca-pub-9957335249326959"
-  slot="2067281555"
-  style={{ width: 728, height: 90 }}
-  format=""
-/>
+
     </div>
   );
 };

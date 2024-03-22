@@ -1,11 +1,17 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './setting.css'
-import { reset } from './auth';
+import { reset, getUid } from './auth';
+import { useNavigate  } from 'react-router-dom';
+
 
 const Settings = () => {
     const [orientation, setOrientation] = useState('');
     const [email, setEmail] = useState('');
+    const [subscriptionId, setSubscriptionId] = useState('');
+    const navigate  = useNavigate(); // Get the history object
+
+
 
     const handleSaveOrientation = async () => {
         try {
@@ -29,6 +35,33 @@ const Settings = () => {
         }
     };
 
+
+
+    const handleGetSubscriptionId = async () => {
+        try {
+            const response = await axios.get(`https://10.78.140.215:443/api/getSubscriptionId?username=${sessionStorage.getItem("username")}`);
+            setSubscriptionId(response.data.subscriptionId);
+        } catch (error) {
+            console.error('Error fetching subscription ID:', error);
+        }
+    };
+
+    const handleCancelSubscription = async () => {
+      
+        try {
+     console.log("firebase uid " , getUid())
+     const fireId= getUid()
+        await handleGetSubscriptionId()
+       console.log("firebase uid " , fireId)
+
+       await axios.get(`https://10.78.140.215:443/disable?uid=${fireId}`)
+
+       navigate('/');
+        } catch (error) {
+            console.error('Error canceling subscription:', error);
+        }
+    };
+
     return (
         <div className="settings-container">
             <h2>Settings</h2>
@@ -46,6 +79,9 @@ const Settings = () => {
                 <label htmlFor="resetPassword">Reset Password</label>
                 <input type="text" id="resetPassword" placeholder="Enter your email" value={email} onChange={(e) => setEmail(e.target.value)} required />
                 <button onClick={handleResetPassword}>Reset</button>
+            </div>
+            <div className="cancel-subscription-section">
+                <button onClick={handleCancelSubscription} className="cancel-subscription-button">Cancel Subscription</button>
             </div>
         </div>
     );

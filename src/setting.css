@@ -43,3 +43,18 @@
     background-color: #0056b3;
   }
   
+
+  .cancel-subscription-button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #dc3545; /* Red color for cancel button */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.cancel-subscription-button:hover {
+    background-color: #c82333; /* Darker shade of red on hover */
+}
