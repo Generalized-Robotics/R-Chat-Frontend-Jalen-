@@ -49,14 +49,16 @@ const Settings = () => {
     const handleCancelSubscription = async () => {
       
         try {
-     console.log("firebase uid " , getUid())
-     const fireId= getUid()
-        await handleGetSubscriptionId()
-       console.log("firebase uid " , fireId)
-
-       await axios.get(`https://10.78.140.215:443/disable?uid=${fireId}`)
-
-       navigate('/');
+            const confirmCancel = window.confirm("Are you sure you want to cancel your subscription? You will never get this account back.");
+            if (confirmCancel) {
+                navigate('/');
+                console.log("firebase uid ", getUid());
+                const fireId = getUid();
+               await handleGetSubscriptionId();
+                console.log("firebase uid ", fireId);
+                await axios.get(`https://10.78.140.215:443/disable?uid=${fireId}`);
+               
+            }
         } catch (error) {
             console.error('Error canceling subscription:', error);
         }
