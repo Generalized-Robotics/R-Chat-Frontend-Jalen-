@@ -24,7 +24,7 @@ const LoginForm = () => {
                 navigate('/login-as-guest');
                 
               // Fetch the username from the server after successful login
-              axios.get('http://localhost:8090/getUserName', {
+              axios.get('https://api.rchat.generalizedrobotics.com/getUserName', {
                 params: { inputEmail: email }
               })
               .then((response) => {

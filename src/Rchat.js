@@ -51,9 +51,34 @@ const Rchat = () => {
     function genPeer(){
       var currentUser = sessionStorage.getItem('username');
       var randomString = Math.random().toString(36).substring(7);
-          const newU= currentUser+randomString
-        const peer = new Peer(currentUser);
-     
+          const newU= currentUser+randomString;
+         // var errorPresent = null;
+         var peer;
+      //var  peer = new Peer(currentUser);
+
+
+
+    //  var peer;
+      // myList.push(peer)
+      var errorPresent = null;
+ 
+ 
+ 
+       do 
+       {
+         try
+         {
+          peer = new Peer(currentUser);
+           myList.push(peer)
+ 
+         }
+         catch (error)
+         {
+           errorPresent = error;
+         }
+      
+       } while(errorPresent !== null);
+
       // peer = new Peer(currentUser);
       setPeer(peer)
       setusernameWithRandom(randomString)
@@ -64,13 +89,25 @@ const Rchat = () => {
       //  console.log("peer id " , currentUser)
       return peer;
     }
+
+
+
+
+
     useEffect(() => {
     if(socket){
      //genPeer()
     }
   }, [socket]);
   
+
+
+
+  
     useEffect(() => {
+
+
+
      if(socket  ){
    /*   var currentUser = sessionStorage.getItem('username');
       var randomString = Math.random().toString(36).substring(7);
@@ -81,8 +118,27 @@ const Rchat = () => {
         console.log("peer ", peer)
         console.log("currentUser ", currentUser)
       //  console.log("peer id " , currentUser)*/
-      const peer = genPeer();
-      myList.push(peer)
+      var peer;
+     // myList.push(peer)
+     var errorPresent = null;
+
+
+
+      do 
+      {
+        try
+        {
+           peer = genPeer();
+          myList.push(peer)
+
+        }
+        catch (error)
+        {
+          errorPresent = error;
+        }
+     
+      } while(errorPresent !== null);
+
        
         peer.on('open', (  id) => {
          // setPeerId(id)
@@ -93,6 +149,8 @@ const Rchat = () => {
           myList.push(id)
         
         });
+
+
         console.log("list " , myList)
         peer.on('call', (call) => {
          // var getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
@@ -143,7 +201,7 @@ const Rchat = () => {
     useEffect(() => {
         // Establish WebSocket connection
         
-        const newSocket = new WebSocket('wss://10.78.140.215:443');
+        const newSocket = new WebSocket('wss://api.rchat.generalizedrobotics.com/dataP');
         newSocket.onopen = () => {
           console.log('WebSocket connection established');
           

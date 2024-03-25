@@ -14,7 +14,7 @@ const LandingPage = () => {
   
   const handleLoginAsGuest = async () => {
     try {
-      await  axios.get('https://10.78.140.215:443/guest')
+      await  axios.get('https://api.rchat.generalizedrobotics.com/guest')
       .then((response) => {
         console.log(".then never runs")
         const username = response.data.username; // Accessing the username from the response data

@@ -15,7 +15,7 @@ const Settings = () => {
 
     const handleSaveOrientation = async () => {
         try {
-            const response = await axios.get(`https://10.78.140.215:443/setOrientation?orientation=${orientation}&username=${sessionStorage.getItem('username')}`);
+            const response = await axios.get(`https://api.rchat.generalizedrobotics.com/setOrientation?orientation=${orientation}&username=${sessionStorage.getItem('username')}`);
             console.log(response.data);
             // Add any additional logic for handling the response
         } catch (error) {
@@ -39,7 +39,7 @@ const Settings = () => {
 
     const handleGetSubscriptionId = async () => {
         try {
-            const response = await axios.get(`https://10.78.140.215:443/api/getSubscriptionId?username=${sessionStorage.getItem("username")}`);
+            const response = await axios.get(`https://api.rchat.generalizedrobotics.com/api/getSubscriptionId?username=${sessionStorage.getItem("username")}`);
             setSubscriptionId(response.data.subscriptionId);
         } catch (error) {
             console.error('Error fetching subscription ID:', error);
@@ -56,7 +56,7 @@ const Settings = () => {
                 const fireId = getUid();
                await handleGetSubscriptionId();
                 console.log("firebase uid ", fireId);
-                await axios.get(`https://10.78.140.215:443/disable?uid=${fireId}`);
+                await axios.get(`https://api.rchat.generalizedrobotics.com/disable?uid=${fireId}`);
                
             }
         } catch (error) {
