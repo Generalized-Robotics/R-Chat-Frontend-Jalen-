@@ -24,8 +24,8 @@ const SignUpForm = () => {
     e.preventDefault();
 
     try {
-      const checkUserName = await axios.get(`http://localhost:8090/usernameExist?username=${username}`)
-      const checkEmail = await axios.get(`http://localhost:8090/emailExist?email=${email}`)
+      const checkUserName = await axios.get(`https://api.rchat.generalizedrobotics.com/usernameExist?username=${username}`)
+      const checkEmail = await axios.get(`https://api.rchat.generalizedrobotics.com/emailExist?email=${email}`)
     const u= checkUserName.data.username
     const e = checkEmail.data.email
     console.log("user ",u)

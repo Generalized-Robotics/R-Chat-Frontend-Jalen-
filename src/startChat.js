@@ -119,6 +119,15 @@ const StartChatPage = () => {
   }, [redirect, navigate]);
 
   const handleStartChat = async () => {
+    setTimeout(() => {
+      if (!chatStarted) {
+        console.log("Calling chatPumpFake route...");
+        axios.get(`http://localhost:8090/chatPumpFake?username=${sessionStorage.getItem("username")}`);
+        setIsLoading(false); // Show loading indicator
+        setChatStarted(false);
+       // alert("no mathes found refresh the page and try again")
+      }
+    }, 10000); // Wait for 3 seconds (adjust the value as needed)
     
     try {
       if (!chatStarted) {
@@ -151,14 +160,20 @@ const StartChatPage = () => {
   };
 
 
-  const handleLogout = () => {
-    logout(); // Call the logout function
+  const handleLogout = async () => {
     navigate('/'); // Redirect to the home route after logout
+    logout(); // Call the logout function
+    await axios.get(`http://localhost:8090/chatPumpFake?username=${sessionStorage.getItem("username")}`)
+
+  
+ 
   };
   
-  const handleSettings = () => {
-    
+  const handleSettings = async () => {
     navigate('/settings'); // Redirect to the home route after logout
+    await axios.get(`http://localhost:8090/chatPumpFake?username=${sessionStorage.getItem("username")}`)
+
+   
   };
   return (
     <div className="start-chat-page">
