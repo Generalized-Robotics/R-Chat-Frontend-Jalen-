@@ -122,7 +122,7 @@ const StartChatPage = () => {
     setTimeout(() => {
       if (!chatStarted) {
         console.log("Calling chatPumpFake route...");
-        axios.get(`http://localhost:8090/chatPumpFake?username=${sessionStorage.getItem("username")}`);
+        axios.get(`https://api.rchat.generalizedrobotics.com/chatPumpFake?username=${sessionStorage.getItem("username")}`);
         setIsLoading(false); // Show loading indicator
         setChatStarted(false);
        // alert("no mathes found refresh the page and try again")
@@ -163,7 +163,7 @@ const StartChatPage = () => {
   const handleLogout = async () => {
     navigate('/'); // Redirect to the home route after logout
     logout(); // Call the logout function
-    await axios.get(`http://localhost:8090/chatPumpFake?username=${sessionStorage.getItem("username")}`)
+    await axios.get(`https://api.rchat.generalizedrobotics.com/chatPumpFake?username=${sessionStorage.getItem("username")}`)
 
   
  
@@ -171,7 +171,7 @@ const StartChatPage = () => {
   
   const handleSettings = async () => {
     navigate('/settings'); // Redirect to the home route after logout
-    await axios.get(`http://localhost:8090/chatPumpFake?username=${sessionStorage.getItem("username")}`)
+    await axios.get(`https://api.rchat.generalizedrobotics.com/chatPumpFake?username=${sessionStorage.getItem("username")}`)
 
    
   };
