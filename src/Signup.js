@@ -24,6 +24,13 @@ const SignUpForm = () => {
     e.preventDefault();
 
     try {
+      const checkUserName = await axios.get(`http://localhost:8090/usernameExist?username=${username}`)
+      const checkEmail = await axios.get(`http://localhost:8090/emailExist?email=${email}`)
+    const u= checkUserName.data.username
+    const e = checkEmail.data.email
+    console.log("user ",u)
+    console.log("email ", e)
+if (u==null && e==null){
      // await axios.get('/payment')
       console.log("called payment")
       // Call the payment route to initiate Stripe payment
@@ -41,6 +48,9 @@ const SignUpForm = () => {
 
   
             window.location.href = paymentResponse.data.checkoutUrl;
+    }else{
+      alert("either username or email is taken")
+    }
 
 /*
       if (paymentResponse.data.success) {

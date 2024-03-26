@@ -40,6 +40,8 @@ const Rchat = () => {
     const [usernameWithRandom, setusernameWithRandom] = useState('');
     const [remotePeerIdValue, setRemotePeerIdValue] = useState('');
     const [sock, setSock] = useState('');
+    var localVideoChecker;
+    var oppositeVideoChecker;
 
     const remoteVideoRef = useRef(null);
     const currentUserVideoRef = useRef(null);
@@ -68,12 +70,16 @@ const Rchat = () => {
        {
          try
          {
+          console.log("current user is " + currentUser+ " generating peer...")
           peer = new Peer(currentUser);
            myList.push(peer)
+           break;
  
          }
          catch (error)
          {
+          console.log("in genpeer function there is an error generating peer, lets try again")
+
            errorPresent = error;
          }
       
@@ -128,19 +134,34 @@ const Rchat = () => {
       {
         try
         {
+        
            peer = genPeer();
           myList.push(peer)
-
+          peer.on('open', (  id) => {
+            // setPeerId(id)
+             // const c setPeerId(id)urrentUser = sessionStorage.getItem('username');
+           console.log("user joined the network " , id)
+         //  id= currentUser
+             setPeerId(id)
+             myList.push(id)
+           
+           });
+           console.log("list " , myList)
         }
         catch (error)
         {
+          console.log("error generating peer in useEffect trying again" , error)
           errorPresent = error;
+         
         }
      
       } while(errorPresent !== null);
 
-       
-        peer.on('open', (  id) => {
+
+     
+    
+       //move into do while
+      /*  peer.on('open', (  id) => {
          // setPeerId(id)
           // const c setPeerId(id)urrentUser = sessionStorage.getItem('username');
         console.log("user joined the network " , id)
@@ -148,15 +169,18 @@ const Rchat = () => {
           setPeerId(id)
           myList.push(id)
         
-        });
+        });*/
 
 
-        console.log("list " , myList)
+       // console.log("list " , myList)
+
+
+
         peer.on('call', (call) => {
          // var getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
          navigator.getUserMedia= navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
          var getUserMedia= navigator.getUserMedia
-        
+        console.log("on call fired")
           getUserMedia({ video: true, audio: true }, (mediaStream) => {
             currentUserVideoRef.current.srcObject = mediaStream;
             currentUserVideoRef.current.play();
@@ -173,6 +197,9 @@ const Rchat = () => {
         console.log("socket null")
       }
       }, [socket])
+
+
+    
     
       const call = (remotePeerId) => {
         console.log("calling user " , remotePeerId )
@@ -180,18 +207,41 @@ const Rchat = () => {
        navigator.getUserMedia= navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
        var getUserMedia= navigator.getUserMedia
         getUserMedia({ video: true, audio: true }, (mediaStream) => {
-    
+          localVideoChecker= mediaStream;
           currentUserVideoRef.current.srcObject = mediaStream;
           currentUserVideoRef.current.play();
     
           const call = peerInstance.current.call(remotePeerId, mediaStream)
     console.log("the call " , call)
           call.on('stream', (remoteStream) => {
+            oppositeVideoChecker= remoteStream;
             remoteVideoRef.current.srcObject = remoteStream
             remoteVideoRef.current.play();
           });
         });
+        console.log("current video " , localVideoChecker)
+        console.log("opposite video checker ", oppositeVideoChecker)
+        if (!localVideoChecker && !oppositeVideoChecker) {
+          console.log("i reloaded page")
+            //window.location.reload();
+            //console.log("i reloaded page")
+        }
       }
+
+      useEffect(() => {
+        const timer = setTimeout(() => {
+          console.log("current video " , localVideoChecker)
+          console.log("opposite video checker ", oppositeVideoChecker)
+            if (!localVideoChecker || !oppositeVideoChecker) {
+              console.log("i reloaded page")
+                //window.location.reload();
+                //console.log("i reloaded page")
+            }
+        }, 5000); // 5 seconds
+       
+        // Cleanup function to clear the timer when the component unmounts or the effect is re-triggered
+        return () => clearTimeout(timer);
+    }, [localVideoChecker, oppositeVideoChecker]); // Empty dependency array ensures this effect runs only once on component mount
     
     
     
