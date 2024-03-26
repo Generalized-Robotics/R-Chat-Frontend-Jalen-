@@ -72,8 +72,17 @@ const Rchat = () => {
          {
           console.log("current user is " + currentUser+ " generating peer...")
           peer = new Peer(currentUser);
+
+          peer.on('error', function(error) {
+            console.log("Error occurred while generating peer:", error);
+           
+        });
+        peer.on('disconnected', function() {
+          console.log("Connection to PeerJS server lost. Attempting to reconnect...");
+          peer.reconnect();
+      });
            myList.push(peer)
-           break;
+          
  
          }
          catch (error)
@@ -137,16 +146,7 @@ const Rchat = () => {
         
            peer = genPeer();
           myList.push(peer)
-          peer.on('open', (  id) => {
-            // setPeerId(id)
-             // const c setPeerId(id)urrentUser = sessionStorage.getItem('username');
-           console.log("user joined the network " , id)
-         //  id= currentUser
-             setPeerId(id)
-             myList.push(id)
-           
-           });
-           console.log("list " , myList)
+      
         }
         catch (error)
         {
@@ -161,7 +161,7 @@ const Rchat = () => {
      
     
        //move into do while
-      /*  peer.on('open', (  id) => {
+        peer.on('open', (  id) => {
          // setPeerId(id)
           // const c setPeerId(id)urrentUser = sessionStorage.getItem('username');
         console.log("user joined the network " , id)
@@ -169,10 +169,10 @@ const Rchat = () => {
           setPeerId(id)
           myList.push(id)
         
-        });*/
+        });
 
 
-       // console.log("list " , myList)
+        console.log("list " , myList)
 
 
 
@@ -223,7 +223,7 @@ const Rchat = () => {
         console.log("opposite video checker ", oppositeVideoChecker)
         if (!localVideoChecker && !oppositeVideoChecker) {
           console.log("i reloaded page")
-            //window.location.reload();
+           // window.location.reload();
             //console.log("i reloaded page")
         }
       }
